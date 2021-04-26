@@ -79,7 +79,7 @@ shinyApp(
               label = "Select a theme:",
               thick = TRUE,
               inline = TRUE,
-              selected = "md",
+              selected = "ios",
               choices = c("ios", "md"),
               animation = "pulse",
               status = "info"
@@ -90,15 +90,21 @@ shinyApp(
               label = "Select a color:",
               thick = TRUE,
               inline = TRUE,
-              selected = "dark",
+              selected = "light",
               choices = c("light", "dark"),
               animation = "pulse",
               status = "info"
             )
           ),
-          f7Row(tagList(a("Quote Collection from: kanye.rest", href = 'https://kanye.rest/'),
-                        a("Creator: Esteban Valencia", href = 'https://www.estebanvalencia.com/'),
-                        a("Source Code",)))
+          f7Col(tagList(
+            f7Link(label = "Quote Collection from: kanye.rest", href = 'https://kanye.rest/'),
+            br(),
+            br(),
+            f7Link(label = "Creator: Esteban Valencia", href = 'https://www.estebanvalencia.com/'),
+            br(),
+            br(),
+            f7Link(label = "Source Code", href = "https://github.com/Esturban/ye")
+          ))
           ,
           effect = "cover"
         )
@@ -125,27 +131,28 @@ shinyApp(
     )
   ),
   server = function(input, output, session) {
-    observe(input$ptr)
+    #First picture and quote
     ye_pic <-
-      eventReactive(input$ptr |
-                      T, kw_imgs[sample.int(length(kw_imgs), 1)])
+      reactiveVal(value = kw_imgs[sample.int(length(kw_imgs), 1)])
     ye_quote <-
-      eventReactive(input$ptr |
-                      T,
-                    jsonlite::fromJSON("https://api.kanye.rest/"))
+      reactiveVal(value = jsonlite::fromJSON("https://api.kanye.rest/"))
     
-    
-    observeEvent(input$ptr | T,
-                 output[['yeezy']] <- renderUI({
-                   f7Card(
-                     id = "main",
-                     title = h2("Kanye West"),
-                     tags$img(src = ye_pic(), style = "display: block; margin-left: auto; margin-right: auto; max-width:450px; border-radius:3%;"),
-                     br(),
-                     tags$h2(tags$blockquote(ye_quote()), style = "display: block; margin-left: auto; margin-right: auto; text-align:center;")
-                   )
-                 }))
-    
+    #Determine if the application has been pulled for refreshing
+    observeEvent(input$ptr,
+                 {
+                   ye_pic(kw_imgs[sample.int(length(kw_imgs), 1)])
+                   ye_quote(jsonlite::fromJSON("https://api.kanye.rest/"))
+                 })
+    #Output of the card showing the yeezy quote and the picture
+    output[['yeezy']] <- renderUI({
+      f7Card(
+        id = "main",
+        title = h2("Kanye West"),
+        tags$img(src = ye_pic(), style = "display: block; margin-left: auto; margin-right: auto; max-width:80%; border-radius:3%;"),
+        br(),
+        tags$h2(tags$blockquote(ye_quote()), style = "display: block; margin-left: auto; margin-right: auto; text-align:center;")
+      )
+    })
     
     
     # send the theme to javascript
