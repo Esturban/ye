@@ -12,7 +12,7 @@ add_pwacompat_deps <- function(tag) {
     version = "2.0.17",
     src = c(file = "pwacompat-2.0.17"),
     script = "js/pwacompat.min.js",
-    package = "pwaa",
+    package = "pwa",
   )
   tagList(tag, pwacompat_deps)
 }
