@@ -1,8 +1,9 @@
 library(shiny)
+library(rvest)
 
 # source modules
 path <- "src/"
-if (interactive())
+if (interactive() & sum(grepl("kWest",getwd()))==0)
   setwd("kWest")
 
 #Source the scripts in src folder
@@ -22,4 +23,16 @@ library(shinyMobile)
 library(shinyWidgets)
 library(tidyverse)
 library(jsonlite)
-library(rvest)
+
+#Load the UI modules
+path<-"ui/"
+sapply(list.files(
+  path,
+  include.dirs = F,
+  pattern = '.R',
+  ignore.case = T
+),
+function(f) {
+  source(paste0(path, f), .GlobalEnv)
+})
+
