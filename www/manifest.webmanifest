@@ -1,6 +1,5 @@
 {
     "theme_color": "#cecaed",
-    "background_color": "#dc285d",
     "display": "standalone",
     "scope": "/",
     "start_url": "http://eval.shinyapps.io/ye",
