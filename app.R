@@ -1,4 +1,3 @@
-
 source("setup.R",.GlobalEnv)
 
 
@@ -22,7 +21,7 @@ shinyApp(
       f7Card(
         id = "main",
         title = h2("Kanye West"),
-        tags$img(src = ye_pic(), style = "display: block; margin-left: auto; margin-right: auto; max-width:80%; border-radius:3%;"),
+        tags$img(src = ye_pic(), style = "display: block; margin-left: auto; margin-right: auto; max-width:100%; width:80%; height:auto; border-radius:3%;"),
         br(),
         tags$h2(tags$blockquote(ye_quote()), style = "display: block; margin-left: auto; margin-right: auto; text-align:center;")
       )
