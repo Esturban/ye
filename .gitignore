@@ -2,4 +2,7 @@ rsconnect
 env_test.R
 *.zip
 .Rproj.user
+.Rhistory
+.RData
+.Ruserdata
 .Renviron

@@ -3,8 +3,6 @@ library(rvest)
 
 # source modules
 path <- "src/"
-if (interactive() & sum(grepl("kWest",getwd()))==0)
-  setwd("kWest")
 
 #Source the scripts in src folder
 #Includes the PWA dependencies

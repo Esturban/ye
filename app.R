@@ -1,4 +1,4 @@
-source("setup.R",.GlobalEnv)
+source("setup.R",F)
 
 
 shinyApp(

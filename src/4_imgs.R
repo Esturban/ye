@@ -1,5 +1,5 @@
 #Loading the Kanye images from getty images
-'https://www.gettyimages.com/photos/kanye-west?family=editorial&phrase=kanye%20west&sort=mostpopular' %>%
+'https://depositphotos.com/stock-photos/kanye-west.html' %>%
   read_html %>%
-  html_nodes('.gallery-mosaic-asset__thumb') %>%
+  html_nodes('._file-image') %>%
   html_attr('src') -> kw_imgs
