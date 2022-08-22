@@ -2,3 +2,4 @@ rsconnect
 env_test.R
 *.zip
 .Rproj.user
+.Renviron
