@@ -1,3 +1,4 @@
+print(list.files('.'))
 source("setup.R",F)
 
 
