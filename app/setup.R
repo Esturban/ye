@@ -13,7 +13,7 @@ sapply(list.files(
   ignore.case = T
 ),
 function(f) {
-  source(paste0(path, f), .GlobalEnv)
+  source(paste0(path, f), F)
 })
 
 #Remaining libraries to load
